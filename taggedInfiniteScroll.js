@@ -1,4 +1,4 @@
-/*! tagged-infinite-scroll - v1.1.1 - 2015-07-17 */
+/*! tagged-infinite-scroll - v1.1.1 - 2015-09-27 */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
@@ -36,7 +36,10 @@
           var shouldGetMore = (remaining - parseInt(scope.distance || 0, 10) <= 0);
 
           if (shouldGetMore) {
-            $timeout(scope.callback);
+            $timeout(function() {
+              scope.callback();
+              onScroll();
+            });
           }
         };
 
