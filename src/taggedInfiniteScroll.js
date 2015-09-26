@@ -35,7 +35,10 @@
           var shouldGetMore = (remaining - parseInt(scope.distance || 0, 10) <= 0);
 
           if (shouldGetMore) {
-            $timeout(scope.callback);
+            $timeout(function() {
+              scope.callback();
+              onScroll();
+            });
           }
         };
 
